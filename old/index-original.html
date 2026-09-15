@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yummy Cakee — Custom Cakes in Ontario, Canada</title>
+<style>
+  :root {
+    --cream: #fdf6ef;
+    --pink: #e8848e;
+    --choco: #5b3a29;
+    --berry: #a3415b;
+    --gold: #c9a227;
+    --ink: #3d2b25;
+    --muted: #7a625a;
+    --white: #ffffff;
+    --shadow: 0 10px 30px rgba(90, 58, 42, .12);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  h1, h2, h3 { font-family: 'Palatino', Georgia, serif; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(253, 246, 239, .95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(90, 58, 42, .12);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px; max-width: 1100px; margin: 0 auto;
+  }
+  .brand { font-size: 1.35rem; font-weight: 700; letter-spacing: .5px; }
+  .brand span { color: var(--pink); }
+  .nav-links { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+  .nav-links a {
+    text-decoration: none; color: var(--ink); font-size: .95rem; font-weight: 600;
+  }
+  .nav-links a:hover { color: var(--pink); }
+  .order-btn {
+    background: var(--chocolate); color: #fff !important;
+    padding: 9px 18px; border-radius: 30px; text-decoration: none;
+    font-size: .9rem !important; transition: background .2s;
+  }
+  .order-btn:hover { background: var(--berry, #8c4a33); }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    text-align: center;
+    padding: 90px 24px 70px;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(232,132,174,.18), transparent 40%),
+      radial-gradient(circle at 80% 60%, rgba(201,162,39,.15), transparent 45%),
+      #fff9f2;
+  }
+  .hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin-bottom: 16px; }
+  .hero h1 span { color: var(--pink); }
+  .hero p { font-size: 1.15rem; color: var(--muted, #6b554c); max-width: 640px; margin: 0 auto 28px; }
+  .hero .cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 13px 28px; border-radius: 30px;
+    text-decoration: none; font-weight: 700; font-size: 1rem;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-dark { background: var(--chocolate); color: #fff; }
+  .btn-instagram {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: #fff; box-shadow: var(--shadow);
+  }
+  .location-chip {
+    margin-top: 26px; display: inline-block; background: var(--white);
+    border: 1px solid rgba(90,58,42,.15); border-radius: 30px;
+    padding: 8px 18px; font-size: .9rem;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: 70px 0; }
+  .section-title { text-align: center; font-size: clamp(1.7rem, 3vw, 2.4rem); margin-bottom: 8px; }
+  .section-sub { text-align: center; color: var(--muted, #7a625a); max-width: 620px; margin: 0 auto 42px; }
+
+  /* ---------- comp ---------- */
+  .comp{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,90px);align-items:center;padding:clamp(60px,9vw,120px) 0;}
+  .comp+.comp{border-top:1px solid rgba(42,40,37,.08);}
+  .comp-media{position:relative;overflow:hidden;}
+  .comp-media img{width:100%;aspect-ratio:3/4;object-fit:cover;transition:transform 1.2s ease;}
+  .comp:hover .comp-media img{transform:scale(1.04);}
+  .comp-copy .num{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;font-family:'Inter',sans-serif;font-weight:500;}
+  .comp-copy h2{font-size:clamp(2.4rem,5vw,3.6rem);font-weight:300;margin:14px 0 10px;}
+  .comp-copy .layer{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:18px;}
+  .comp-copy p.desc{color:rgba(42,40,37,.72);max-width:46ch;}
+  .comp-copy p.line{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;color:var(--text);margin-top:20px;}
+  .comp.flip .comp-media{order:2;}
+    @media(max-width:860px){
+      .comp{grid-template-columns:1fr;gap:32px;padding:56px 0;}
+      .comp.flip .comp-media{order:0;}
+    }
+
+  /* ---------- MENU TABLE ---------- */
+  .menu-table {
+    width: 100%; border-collapse: collapse; background: var(--white);
+    border-radius: 14px; overflow: hidden; box-shadow: var(--shadow);
+  }
+  .menu-table th {
+    background: var(--chocolate); color: #fff; text-align: left;
+    padding: 14px 18px; font-size: .95rem;
+  }
+  .menu-table td { padding: 13px 18px; border-bottom: 1px solid rgba(90,58,42,.1); }
+  .menu-table tr:last-child td { border-bottom: none; }
+  .menu-table .flavor-name { font-weight: 700; }
+  .menu-table .note { color: var(--muted, #7a625a); font-size: .85rem; }
+  .price-cad { font-weight: 700; color: var(--chocolate); white-space: nowrap; }
+  .menu-tip { text-align: center; margin-top: 22px; color: var(--muted, #7a625a); font-size: .92rem; }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px;
+  }
+  .gallery-item {
+    aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; position: relative;
+    background: linear-gradient(135deg, #f2d9cf, #f7e8d9); box-shadow: var(--shadow);
+  }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .gallery-item .tag {
+    position: absolute; left: 10px; bottom: 10px; background: rgba(61,43,37,.75);
+    color: #fff; font-size: .78rem; padding: 4px 10px; border-radius: 20px; letter-spacing: .3px;
+  }
+
+  /* ---------- REVIEWS ---------- */
+  .review-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px;
+  }
+  .review-card {
+    background: var(--white); border-radius: 14px; box-shadow: var(--shadow);
+    padding: 24px; border-top: 4px solid var(--pink);
+  }
+  .stars { color: var(--gold); letter-spacing: 2px; margin-bottom: 10px; }
+  .review-card blockquote { font-style: italic; color: #58443c; margin-bottom: 14px; }
+  .review-card cite { font-style: normal; font-weight: 700; font-size: .92rem; color: var(--chocolate); }
+
+  /* ---------- ORDER ---------- */
+  .order-cta {
+    background: linear-gradient(135deg, var(--chocolate), #7c4a2f);
+    color: #514f4f; text-align: center; border-radius: 20px;
+    padding: 60px 30px; margin: 20px 0 80px;
+  }
+  .order-cta h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); margin-bottom: 12px; }
+  .order-cta p { max-width: 520px; margin: 0 auto 26px; color: #3d1901; }
+  .btn-lg { padding: 15px 34px; font-size: 1.05rem; }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: #2e1f18; color: #d9c6ba; padding: 36px 24px; text-align: center;
+  }
+  footer a { color: #f4c9a3; text-decoration: none; }
+  footer .foot-brand { font-size: 1.15rem; color: #fff; margin-bottom: 8px; }
+
+  @media (max-width: 640px) {
+    .nav-inner { flex-direction: column; gap: 10px; }
+    .menu-table { font-size: .88rem; }
+    .menu-table th, .menu-table td { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav>
+  <div class="nav-inner">
+    <div class="brand">Yummy <span>Cakee</span></div>
+    <div class="nav-links">
+      <a href="#flavors">Flavors</a>
+      <a href="#menu">Menu &amp; Prices</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+      <a class="order-btn" href="https://www.instagram.com/_yummy_cakee_?stkn=N3EybWEwcjVhbmdq" target="_blank" rel="noopener">Order on Instagram</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<!-- KINDER BUENO -->
+<section class="comp container" style="">
+  <div class="comp-media reveal in"><img src="bueno.jpg" alt="Kinder Bueno composition cake" style=""></div>
+  <div class="comp-copy reveal in" style="">
+    <span class="num">01</span>
+    <h2 style="">Kinder Bueno</h2>
+    <div class="layer" style="">Chocolate sponge · White &amp; milk chocolate mousse · Berry insertion</div>
+    <p class="desc" style="">Chocolate sponge layered with white chocolate mousse, milk chocolate mousse, and a fresh wild-berry insertion — three layers, three textures, one harmony.</p>
+    <p class="line" style="">Three layers, three textures, one quiet harmony.</p>
+  </div>
+</section>
+
+<!-- FRESH VANILLA -->
+<section class="comp flip container" style="">
+  <div class="comp-media reveal in"><img src="french-vanilla.jpg" alt="Fresh Vanilla composition cake" style=""></div>
+  <div class="comp-copy reveal in">
+    <span class="num">02</span>
+    <h2>Fresh Vanilla</h2>
+    <div class="layer">Vanilla sponge · Vanilla cream · Fresh berry insertion</div>
+    <p class="desc">True vanilla sponge with a silky vanilla cream and a crown of fresh berries — refined simplicity, where authentic vanilla meets the brightness of fruit.</p>
+    <p class="line">Refined simplicity — vanilla, done honestly.</p>
+  </div>
+</section>
+
+<!-- FRESH PISTACHIO -->
+<section class="comp container" style="">
+  <div class="comp-media reveal in"><img src="pistachio-raspberry.jpg" alt="Fresh Pistachio composition cake" style=""></div>
+  <div class="comp-copy reveal in" style="">
+    <span class="num">03</span>
+    <h2 style="">Fresh Pistachio</h2>
+    <div class="layer" style="">Vanilla sponge · Pistachio mousse · Fresh berry insertion</div>
+    <p class="desc" style="">The delicate aroma of Sicilian pistachio in a light mousse, lifted by the gentle acidity of fresh berries over a soft vanilla sponge.</p>
+    <p class="line" style="">Sicilian pistachio, softened by fresh berries.</p>
+  </div>
+</section>
+
+<!-- FORET NOIRE -->
+<section class="comp flip container" style="">
+  <div class="comp-media reveal in"><img src="black-forest.jpg" alt="Forêt Noire composition cake" style=""></div>
+  <div class="comp-copy reveal in" style="">
+    <span class="num">04</span>
+    <h2 style="">Black Forest</h2>
+    <div class="layer" style="">Chocolate sponge · Chocolate mousse · Wild berries</div>
+    <p class="desc" style="">A classic, reinterpreted — deep cocoa intensity balanced by the acidity of fresh wild berries. For those who love chocolate at its most confident.</p>
+    <p class="line" style="">A classic, reinterpreted with confidence.</p>
+  </div>
+</section>
+
+<!-- ================= MENU & PRICES ================= -->
+<section id="menu" class="wrap">
+  <h2 class="section-title">Menu &amp; Prices</h2>
+  <p class="section-sub">Prices in CAD. Final pricing depends on size, filling, and decor — DM us on Instagram for an exact quote.</p>
+  <div style="overflow-x:auto;">
+  <table class="menu-table">
+    <thead>
+      <tr>
+        <th>Flavor</th>
+        <th>About</th>
+        <th>1 kg (8–10 ppl)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="flavor-name">Black Forest</td>
+        <td class="note">Chocolate sponge, cherry, whipped cream</td>
+        <td class="price-cad">$75</td>
+      </tr>
+      <tr>
+        <td class="flavor-name">Pistachio–Raspberry</td>
+        <td class="note">Pistachio sponge, pistachio cream, raspberry</td>
+        <td class="price-cad">$95</td>
+      </tr>
+      <tr>
+        <td class="flavor-name">French Vanilla</td>
+        <td class="note">Vanilla sponge, Swiss meringue buttercream</td>
+        <td class="price-cad">$70</td>
+      </tr>
+      <tr>
+        <td class="flavor-name">Bueno</td>
+        <td class="note">Chocolate hazelnut cream, hazelnut crunch</td>
+        <td class="price-cad">$85</td>
+      </tr>
+      <tr>
+        <td class="flavor-name">Honey Cake</td>
+        <td class="note">Honey layers, sour cream filling</td>
+        <td class="price-cad">$80</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="menu-tip">Add-ons: fresh fruit topping +$8 &middot; custom topper +$10 &middot; tiered/wedding cakes — quote on request</p>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery" class="wrap">
+  <h2 class="section-title">Cake Gallery</h2>
+  <p class="section-sub">A peek at recent bakes. Replace the placeholder photos with yours (drop them in the <code>images/</code> folder) or DM us for more.</p>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="images/gallery-1.jpg" alt="Chocolate cake" onerror="this.remove()">
+      <span class="tag">Black Forest</span>
+    </div>
+    <div class="gallery-item">
+      <img src="images/gallery-2.jpg" alt="Pistachio raspberry cake" onerror="this.remove()">
+      <span class="tag">Pistachio–Raspberry</span>
+    </div>
+    <div class="gallery-item">
+      <img src="images/gallery-3.jpg" alt="Vanilla cake" onerror="this.remove()">
+      <span class="tag">French Vanilla</span>
+    </div>
+    <div class="gallery-item">
+      <img src="images/gallery-4.jpg" alt="Bueno cake" onerror="this.remove()">
+      <span class="tag">Bueno</span>
+    </div>
+    <div class="gallery-item">
+      <img src="images/gallery-5.jpg" alt="Honey cake" onerror="this.remove()">
+      <span class="tag">Honey Cake</span>
+    </div>
+    <div class="gallery-item">
+      <img src="images/gallery-6.jpg" alt="Celebration cake" onerror="this.remove()">
+      <span class="tag">Custom Order</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section id="reviews" class="wrap">
+  <h2 class="section-title">What Our Customers Say</h2>
+  <p class="section-sub">Reviews from cake lovers across Ontario.</p>
+  <div class="review-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"The pistachio-raspberry cake was the highlight of our baby shower. Absolutely stunning and delicious — everyone asked where it was from!"</blockquote>
+      <cite>— Sarah M., Toronto</cite>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Ordered a Black Forest for my mom's birthday. Moist, rich, beautifully decorated, and delivered on time. Will order again!"</blockquote>
+      <cite>— Daniel K., Mississauga</cite>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"The honey cake tastes just like my grandmother's — perfectly layered and not too sweet. Wonderful service over Instagram DM."</blockquote>
+      <cite>— Olena S., Vaughan</cite>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"I asked for a custom Bueno cake with a photo topper and it exceeded every expectation. Best cake shop in the GTA, hands down."</blockquote>
+      <cite>— Jessica T., Brampton</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ORDER CTA ================= -->
+<div class="wrap">
+  <div class="order-cta">
+    <h2>Ready to Order?</h2>
+    <p>DM us on Instagram with your flavor, size, date, and any custom design ideas. We'll confirm your price and availability right away.</p>
+    <a class="btn btn-instagram btn-lg" href="https://www.instagram.com/_yummy_cakee_?stkn=N3EybWEwcjVhbmdq" target="_blank" rel="noopener">Order on Instagram</a>
+  </div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="foot-brand">Yummy Cakee</div>
+  <p>Serving Ontario, Canada &middot; Pickup &amp; local delivery</p>
+  <p>Orders &amp; inquiries: <a href="https://www.instagram.com/_yummy_cakee_?stkn=N3EybWEwcjVhbmdq" target="_blank" rel="noopener">@_yummy_cakee_ on Instagram</a></p>
+  <p style="margin-top:12px; font-size:.82rem; color:#a58c79;">All prices in CAD and subject to customization.</p>
+</footer>
+
+</body>
+</html>

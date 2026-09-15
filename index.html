@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yummy Cakee — Home Bakery by Olena Godyna · Ontario, Canada</title>
+<meta name="description" content="Handmade celebration cakes baked to order in Ontario, Canada. Signature compositions, custom designs, pickup and local delivery. Order on Instagram.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --graphite:#1B1A18;
+    --graphite-2:#26241F;
+    --ivory:#F4F1EC;
+    --ivory-2:#EDE7DD;
+    --gold:#C8A173;
+    --gold-2:#B8956A;
+    --text:#2A2825;
+    --muted:rgba(42,40,37,.68);
+    --line:rgba(42,40,37,.1);
+    --ease:cubic-bezier(.22,1,.36,1);
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  html,body{overflow-x:hidden;max-width:100%;}
+  body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--ivory);color:var(--text);font-size:16.5px;line-height:1.7;font-weight:300;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;margin:0;line-height:1.08;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  p{margin:0;}
+  .container{max-width:1200px;margin-inline:auto;padding-inline:clamp(22px,5vw,64px);}
+  .eyebrow{font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;font-weight:500;color:var(--gold);}
+  .section-head{text-align:center;max-width:60ch;margin:0 auto clamp(40px,6vw,70px);}
+  .section-head h2{font-size:clamp(2.4rem,5.5vw,4rem);font-weight:300;margin:16px 0 14px;}
+  .section-head h2 em{font-style:italic;color:var(--gold);}
+  .section-head p{color:var(--muted);}
+  .btn{display:inline-flex;align-items:center;gap:.6em;font-family:'Inter',sans-serif;font-weight:500;font-size:13px;letter-spacing:.16em;text-transform:uppercase;padding:17px 36px;border-radius:2px;transition:background .35s var(--ease),color .35s var(--ease),transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);cursor:pointer;border:1px solid transparent;}
+  .btn-gold{background:var(--gold);color:#fff;}
+  .btn-gold:hover{background:#fff;color:var(--graphite);transform:translateY(-2px);box-shadow:0 16px 36px rgba(200,161,115,.4);}
+  .btn-ghost{border-color:rgba(244,241,236,.35);color:var(--ivory);}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);}
+  .btn-dark{background:var(--graphite);color:var(--ivory);}
+  .btn-dark:hover{background:var(--gold);color:#fff;transform:translateY(-2px);box-shadow:0 16px 36px rgba(200,161,115,.35);}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0ms);}
+  .reveal.in{opacity:1;transform:none;}
+  .reveal-img > *{clip-path:inset(0 0 100% 0);transition:clip-path 1.3s var(--ease),transform 1.4s var(--ease);transition-delay:var(--d,0ms);}
+  .reveal-img.in > *{clip-path:inset(0 0 0 0);}
+
+  /* ---------- HEADER ---------- */
+  header.site{position:sticky;top:0;z-index:100;background:rgba(244,241,236,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);transition:box-shadow .4s var(--ease);}
+  header.site.scrolled{box-shadow:0 10px 30px rgba(27,26,24,.06);}
+  .header-row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:18px;transition:padding .4s var(--ease);}
+  header.site.scrolled .header-row{padding-block:12px;}
+  .logo{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(22px,2.4vw,27px);line-height:1;letter-spacing:.01em;display:flex;flex-direction:column;gap:3px;}
+  .logo small{font-family:'Inter',sans-serif;font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:500;}
+  .nav-links{display:flex;align-items:center;gap:30px;font-size:13.5px;font-weight:400;letter-spacing:.04em;}
+  .nav-links a{position:relative;opacity:.72;transition:opacity .25s;padding-block:4px;}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease);}
+  .nav-links a:hover{opacity:1;}
+  .nav-links a:hover::after{transform:scaleX(1);transform-origin:left;}
+  .header-cta{padding:12px 22px;font-size:11.5px;}
+  .burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:6px;padding:0;}
+  .burger span{display:block;width:24px;height:1.5px;background:var(--text);transition:transform .35s var(--ease),opacity .3s;}
+  .burger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
+  .burger.open span:nth-child(2){opacity:0;}
+  .burger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
+  .mobile-nav{display:none;flex-direction:column;gap:0;border-top:1px solid var(--line);}
+  .mobile-nav a{padding:16px 0;border-bottom:1px solid var(--line);font-size:15px;letter-spacing:.06em;}
+  .mobile-nav a:last-child{border-bottom:0;}
+  .mobile-nav.open{display:flex;}
+  @media (max-width:900px){
+    .nav-links,.header-cta{display:none;}
+    .burger{display:flex;}
+  }
+
+  /* ---------- HERO ---------- */
+  #hero{background:var(--graphite);color:var(--ivory);position:relative;overflow:hidden;padding:clamp(70px,9vw,120px) 0 clamp(70px,9vw,110px);}
+  #hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 20% 10%,rgba(200,161,115,.16),transparent 70%),radial-gradient(40% 50% at 90% 90%,rgba(200,161,115,.1),transparent 70%);pointer-events:none;}
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,6vw,90px);align-items:center;}
+  .hero-copy h1{font-size:clamp(3rem,7vw,5.6rem);font-weight:300;margin:22px 0 26px;line-height:1.02;}
+  .hero-copy h1 em{font-style:italic;color:var(--gold);}
+  .hero-copy p{max-width:48ch;color:rgba(244,241,236,.72);font-size:1.05rem;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:38px;}
+  .hero-meta{display:flex;gap:28px;flex-wrap:wrap;margin-top:46px;padding-top:28px;border-top:1px solid rgba(244,241,236,.12);}
+  .hero-meta div{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,241,236,.55);}
+  .hero-meta div strong{display:block;font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;letter-spacing:0;text-transform:none;color:var(--ivory);line-height:1.1;margin-bottom:4px;}
+  .hero-media{position:relative;height:clamp(420px,52vw,620px);}
+  .hero-media .shot{position:absolute;overflow:hidden;border-radius:3px;box-shadow:0 40px 80px rgba(0,0,0,.45);will-change:transform;}
+  .hero-media .shot img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 1.6s var(--ease);}
+  .hero-media .shot.in img{transform:scale(1);}
+  .shot-main{top:0;right:0;width:74%;height:88%;}
+  .shot-second{left:0;bottom:0;width:46%;height:52%;border:6px solid var(--graphite);}
+  .hero-badge{position:absolute;top:8%;left:2%;width:116px;height:116px;border-radius:50%;background:var(--gold);color:var(--graphite);display:grid;place-items:center;text-align:center;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;line-height:1.5;animation:spin 22s linear infinite;box-shadow:0 20px 40px rgba(0,0,0,.35);}
+  .hero-badge svg{position:absolute;inset:0;width:100%;height:100%;}
+  .hero-badge svg text{font-family:'Inter',sans-serif;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;fill:var(--graphite);font-weight:500;}
+  .hero-badge span{font-family:'Cormorant Garamond',serif;font-size:2rem;font-style:italic;letter-spacing:0;text-transform:none;font-weight:400;animation:spin 22s linear infinite reverse;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .h-in{opacity:0;transform:translateY(34px);animation:hin 1.2s var(--ease) forwards;animation-delay:var(--d,0ms);}
+  @keyframes hin{to{opacity:1;transform:none;}}
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-media{height:clamp(360px,90vw,520px);order:-1;}
+    .hero-badge{width:96px;height:96px;top:auto;bottom:-6%;left:auto;right:4%;}
+  }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{background:var(--ivory-2);border-block:1px solid var(--line);overflow:hidden;padding:18px 0;}
+  .marquee-track{display:flex;width:max-content;animation:marquee 40s linear infinite;}
+  .marquee-track span{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-style:italic;padding-inline:28px;white-space:nowrap;color:var(--text);display:flex;align-items:center;gap:28px;}
+  .marquee-track span::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);}
+  @keyframes marquee{to{transform:translateX(-50%);}}
+
+  /* ---------- SIGNATURES ---------- */
+  #signatures{padding-top:clamp(70px,10vw,130px);}
+  .comp{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,90px);align-items:center;padding:clamp(50px,8vw,100px) 0;}
+  .comp+.comp{border-top:1px solid var(--line);}
+  .comp-media{position:relative;overflow:hidden;border-radius:3px;}
+  .comp-media img{width:100%;aspect-ratio:3/4;object-fit:cover;transition:transform 1.4s var(--ease),clip-path 1.3s var(--ease);}
+  .comp:hover .comp-media img{transform:scale(1.045);}
+  .comp-media .price-tag{position:absolute;right:18px;bottom:18px;background:rgba(27,26,24,.85);color:var(--ivory);backdrop-filter:blur(6px);padding:10px 16px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;border-radius:2px;}
+  .comp-media .price-tag b{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:500;letter-spacing:0;color:var(--white);margin-left:8px;}
+  .comp-copy .num{font-size:12px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;font-weight:500;display:flex;align-items:center;gap:14px;}
+  .comp-copy .num::after{content:"";width:40px;height:1px;background:var(--gold);}
+  .comp-copy h3{font-size:clamp(2.4rem,5vw,3.6rem);font-weight:300;margin:14px 0 10px;}
+  .comp-copy .layer{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:18px;line-height:1.9;}
+  .comp-copy p.desc{color:var(--muted);max-width:46ch;}
+  .comp-copy p.line{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;color:var(--text);margin-top:22px;}
+  .comp-copy .comp-link{display:inline-flex;align-items:center;gap:10px;margin-top:26px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--text);}
+  .comp-copy .comp-link i{width:34px;height:1px;background:var(--text);transition:width .4s var(--ease);font-style:normal;}
+  .comp-copy .comp-link:hover i{width:56px;background:var(--gold);}
+  .comp.flip .comp-media{order:2;}
+  @media (max-width:860px){
+    .comp{grid-template-columns:1fr;gap:32px;padding:50px 0;}
+    .comp.flip .comp-media{order:0;}
+  }
+
+  /* ---------- SERVICES ---------- */
+  #services{background:var(--ivory-2);padding:clamp(70px,10vw,130px) 0;}
+  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.5vw,32px);}
+  .service{background:var(--ivory);border:1px solid var(--line);border-radius:3px;overflow:hidden;display:flex;flex-direction:column;transition:transform .6s var(--ease),box-shadow .6s var(--ease),border-color .4s;}
+  .service:hover{transform:translateY(-8px);box-shadow:0 34px 60px rgba(27,26,24,.1);border-color:rgba(200,161,115,.5);}
+  .service-media{position:relative;overflow:hidden;aspect-ratio:4/5;}
+  .service-media img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease);}
+  .service:hover .service-media img{transform:scale(1.06);}
+  .service-media .tag{position:absolute;left:18px;top:18px;background:rgba(27,26,24,.82);backdrop-filter:blur(6px);color:var(--gold);padding:8px 14px;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;border-radius:2px;}
+  .service-body{padding:30px 30px 32px;display:flex;flex-direction:column;flex:1;}
+  .service-body .num{font-size:11.5px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;font-weight:500;display:flex;align-items:center;gap:12px;}
+  .service-body .num::after{content:"";width:32px;height:1px;background:var(--gold);}
+  .service-body h3{font-size:clamp(1.8rem,2.4vw,2.3rem);font-weight:400;margin:12px 0 10px;}
+  .service-body p{font-size:.95rem;color:var(--muted);}
+  .service-body ul{list-style:none;margin:20px 0 0;padding:20px 0 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:9px;}
+  .service-body li{font-size:.9rem;display:flex;gap:12px;align-items:baseline;}
+  .service-body li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold);flex:none;transform:translateY(-3px);}
+  .service-foot{margin-top:auto;padding-top:26px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;}
+  .service-foot .from{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:500;color:var(--gold-2);line-height:1;}
+  .service-foot .from small{display:block;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:400;margin-bottom:5px;}
+  .service-foot .link{display:inline-flex;align-items:center;gap:10px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--text);}
+  .service-foot .link i{width:28px;height:1px;background:var(--text);transition:width .4s var(--ease),background .3s;font-style:normal;}
+  .service-foot .link:hover i{width:46px;background:var(--gold);}
+  .services-note{text-align:center;margin-top:40px;font-size:.9rem;color:var(--muted);}
+  @media (max-width:960px){.services{grid-template-columns:1fr;max-width:520px;margin:0 auto;}.service-media{aspect-ratio:4/3;}}
+
+  /* ---------- GALLERY ---------- */
+  #gallery{padding:clamp(70px,10vw,130px) 0;}
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;grid-auto-flow:dense;gap:14px;}
+  .g-item{position:relative;overflow:hidden;border-radius:3px;cursor:zoom-in;background:var(--ivory-2);}
+  .g-item img{width:100%;height:100%;object-fit:cover;transition:transform 1.3s var(--ease),filter .6s var(--ease);}
+  .g-item:hover img{transform:scale(1.06);}
+  .g-item .cap{position:absolute;left:0;right:0;bottom:0;padding:38px 18px 16px;background:linear-gradient(to top,rgba(27,26,24,.75),transparent);color:var(--ivory);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;opacity:0;transform:translateY(10px);transition:opacity .5s var(--ease),transform .5s var(--ease);}
+  .g-item:hover .cap{opacity:1;transform:none;}
+  .g-tall{grid-row:span 2;}
+  .g-wide{grid-column:span 2;}
+  .g-big{grid-column:span 2;grid-row:span 2;}
+  @media (max-width:1000px){.gallery{grid-template-columns:repeat(3,1fr);grid-auto-rows:200px;}}
+  @media (max-width:640px){
+    .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px;gap:10px;}
+    .g-wide,.g-big{grid-column:span 2;}
+    .g-item .cap{opacity:1;transform:none;font-size:10px;padding:28px 12px 12px;}
+  }
+
+  /* LIGHTBOX */
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(27,26,24,.94);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s var(--ease);}
+  .lightbox.open{opacity:1;pointer-events:auto;}
+  .lightbox figure{margin:0;max-width:min(92vw,1100px);max-height:88vh;display:flex;flex-direction:column;align-items:center;gap:14px;transform:scale(.96);transition:transform .5s var(--ease);}
+  .lightbox.open figure{transform:none;}
+  .lightbox img{max-width:100%;max-height:78vh;object-fit:contain;border-radius:3px;box-shadow:0 40px 80px rgba(0,0,0,.5);}
+  .lightbox figcaption{color:var(--gold);font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:500;}
+  .lb-btn{position:absolute;background:none;border:1px solid rgba(244,241,236,.25);color:var(--ivory);width:48px;height:48px;border-radius:50%;cursor:pointer;display:grid;place-items:center;font-size:20px;transition:border-color .3s,background .3s;}
+  .lb-btn:hover{border-color:var(--gold);background:rgba(200,161,115,.15);}
+  .lb-close{top:22px;right:22px;}
+  .lb-prev{left:22px;top:50%;transform:translateY(-50%);}
+  .lb-next{right:22px;top:50%;transform:translateY(-50%);}
+  @media (max-width:640px){.lb-prev{left:8px;}.lb-next{right:8px;}.lb-btn{width:40px;height:40px;}}
+
+  /* ---------- ABOUT ---------- */
+  #about{background:var(--graphite);color:var(--ivory);padding:clamp(70px,10vw,130px) 0;position:relative;overflow:hidden;}
+  #about::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 60% at 85% 20%,rgba(200,161,115,.14),transparent 70%);pointer-events:none;}
+  .about-grid{position:relative;display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(40px,7vw,100px);align-items:center;}
+  .about-media{position:relative;}
+  .about-media .frame{overflow:hidden;border-radius:3px;}
+  .about-media img{width:100%;aspect-ratio:4/5;object-fit:cover;}
+  .about-media .frame-2{position:absolute;right:-8%;bottom:-10%;width:48%;border:6px solid var(--graphite);border-radius:3px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.4);}
+  .about-media .frame-2 img{aspect-ratio:1;}
+  .about-copy h2{font-size:clamp(2.4rem,5vw,3.8rem);font-weight:300;margin:16px 0 22px;}
+  .about-copy h2 em{font-style:italic;color:var(--gold);}
+  .about-copy p{color:rgba(244,241,236,.72);max-width:52ch;margin-bottom:16px;}
+  .about-values{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px;padding-top:30px;border-top:1px solid rgba(244,241,236,.12);}
+  .about-values h4{font-size:1.35rem;font-weight:400;margin-bottom:6px;color:var(--ivory);}
+  .about-values p{font-size:.86rem;margin:0;color:rgba(244,241,236,.6);}
+  .signature{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.8rem;color:var(--gold);margin-top:26px;}
+  @media (max-width:860px){
+    .about-grid{grid-template-columns:1fr;}
+    .about-media{margin-bottom:40px;max-width:520px;}
+    .about-media .frame-2{right:0;bottom:-8%;}
+    .about-values{grid-template-columns:1fr;gap:18px;}
+  }
+
+  /* ---------- REVIEWS ---------- */
+  #reviews{padding:clamp(70px,10vw,130px) 0;}
+  .review-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .review-card{background:#fff;border:1px solid var(--line);border-radius:3px;padding:36px 34px;position:relative;transition:transform .5s var(--ease),box-shadow .5s var(--ease);}
+  .review-card:hover{transform:translateY(-6px);box-shadow:0 30px 60px rgba(27,26,24,.08);}
+  .review-card::before{content:"\201C";position:absolute;top:14px;right:26px;font-family:'Cormorant Garamond',serif;font-size:6rem;line-height:1;color:var(--gold);opacity:.25;}
+  .stars{color:var(--gold);letter-spacing:4px;font-size:.85rem;margin-bottom:16px;}
+  .review-card blockquote{margin:0 0 20px;font-family:'Cormorant Garamond',serif;font-size:1.35rem;line-height:1.45;font-style:italic;}
+  .review-card cite{font-style:normal;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--muted);}
+  @media (max-width:760px){.review-grid{grid-template-columns:1fr;}}
+
+  /* ---------- HOW TO ORDER ---------- */
+  #how-to-order{background:var(--ivory-2);padding:clamp(70px,10vw,130px) 0;}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;counter-reset:step;}
+  .step{padding:34px 30px;background:var(--ivory);border:1px solid var(--line);border-radius:3px;position:relative;transition:transform .5s var(--ease),border-color .4s;}
+  .step:hover{transform:translateY(-6px);border-color:var(--gold);}
+  .step .n{font-family:'Cormorant Garamond',serif;font-size:3.2rem;font-weight:300;color:var(--gold);line-height:1;margin-bottom:18px;}
+  .step h3{font-size:1.6rem;margin-bottom:10px;}
+  .step p{font-size:.95rem;color:var(--muted);}
+  @media (max-width:860px){.steps{grid-template-columns:1fr;}}
+
+  /* ---------- CTA ---------- */
+  #cta{background:var(--graphite-2);color:var(--ivory);text-align:center;padding:clamp(80px,11vw,140px) 0;position:relative;overflow:hidden;}
+  #cta::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 90% at 50% 0%,rgba(200,161,115,.18),transparent 70%);}
+  .cta-inner{position:relative;}
+  .cta-inner h2{font-size:clamp(2.8rem,6.5vw,5rem);font-weight:300;}
+  .cta-inner h2 em{font-style:italic;color:var(--gold);}
+  .cta-inner p{max-width:46ch;margin:24px auto 42px;color:rgba(244,241,236,.75);}
+  .cta-inner .handle{display:block;margin-top:26px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(244,241,236,.5);}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--graphite);color:rgba(240,230,216,.7);padding-block:48px;border-top:1px solid rgba(244,241,236,.08);}
+  .foot-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;}
+  .foot-brand{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.5rem;color:#F6F1E9;}
+  .foot-brand small{display:block;font-family:'Inter',sans-serif;font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-top:4px;}
+  .foot-row p{font-size:12px;letter-spacing:.1em;}
+  .foot-links{display:flex;gap:22px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;}
+  .foot-links a{opacity:.7;transition:opacity .25s,color .25s;}
+  .foot-links a:hover{opacity:1;color:var(--gold);}
+  .foot-bottom{margin-top:28px;padding-top:22px;border-top:1px solid rgba(244,241,236,.08);font-size:11px;letter-spacing:.08em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:rgba(240,230,216,.45);}
+
+  /* ---------- BACK TO TOP ---------- */
+  .to-top{position:fixed;right:22px;bottom:22px;width:46px;height:46px;border-radius:50%;background:var(--graphite);color:var(--gold);border:1px solid rgba(200,161,115,.4);display:grid;place-items:center;cursor:pointer;z-index:90;opacity:0;transform:translateY(16px);transition:opacity .4s var(--ease),transform .4s var(--ease),background .3s;}
+  .to-top.show{opacity:1;transform:none;}
+  .to-top:hover{background:var(--gold);color:var(--graphite);}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}
+    .reveal,.reveal-img,.h-in{opacity:1;transform:none;clip-path:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site" id="site-header">
+  <div class="container header-row">
+    <a href="#hero" class="logo">Yummy Cakee<small>by Olena Godyna</small></a>
+    <nav class="nav-links">
+      <a href="#signatures">Signatures</a>
+      <a href="#services">Occasions</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#about">The Baker</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#how-to-order">How to Order</a>
+    </nav>
+    <a href="https://www.instagram.com/_yummy_cakee_/" target="_blank" rel="noopener" class="btn btn-dark header-cta">Order on Instagram</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="container mobile-nav" id="mobile-nav">
+    <a href="#signatures">Signatures</a>
+    <a href="#services">Occasions</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#about">The Baker</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#how-to-order">How to Order</a>
+    <a href="https://www.instagram.com/_yummy_cakee_/" target="_blank" rel="noopener" style="color:var(--gold);">Order on Instagram →</a>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section id="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow h-in" style="--d:100ms">Home Bakery · Ontario, Canada</span>
+      <h1 class="h-in" style="--d:250ms">Cakes that define <em>the moment.</em></h1>
+      <p class="h-in" style="--d:400ms">Every layer is considered as part of the whole — delicate sponges, refined creams, and fresh fruit in season. Baked to order, one celebration at a time.</p>
+      <div class="hero-actions h-in" style="--d:550ms">
+        <a href="#signatures" class="btn btn-gold">Explore Flavours</a>
+        <a href="https://www.instagram.com/_yummy_cakee_/" target="_blank" rel="noopener" class="btn btn-ghost">Order on Instagram</a>
+      </div>
+      <div class="hero-meta h-in" style="--d:700ms">
+        <div><strong>Made to order</strong>Never pre-baked</div>
+        <div><strong>Pickup &amp; delivery</strong>Across the GTA</div>
+        <div><strong>Fully custom</strong>Toppers &amp; tiers</div>
+      </div>
+    </div>
+    <div class="hero-media" id="hero-media">
+      <div class="shot shot-main h-in" style="--d:300ms" data-depth="12"><img src="images/two-tier.jpg" alt="Two-tier pink celebration cake with dried florals and a gold Happy Birthday topper"></div>
+      <div class="shot shot-second h-in" style="--d:550ms" data-depth="24"><img src="images/fraisier.jpg" alt="Strawberry pistachio fraisier cake"></div>
+      <div class="hero-badge h-in" style="--d:800ms" data-depth="36">
+        <svg viewBox="0 0 100 100"><defs><path id="circ" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><text><textPath href="#circ">Baked to order · Ontario · Baked to order ·</textPath></text></svg>
+        <span>YC</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Baked to order</span><span>Fresh berries in season</span><span>Sicilian pistachio</span><span>Pickup &amp; local delivery</span><span>Custom toppers &amp; tiers</span><span>Ontario, Canada</span>
+    <span>Baked to order</span><span>Fresh berries in season</span><span>Sicilian pistachio</span><span>Pickup &amp; local delivery</span><span>Custom toppers &amp; tiers</span><span>Ontario, Canada</span>
+  </div>
+</div>
+
+<!-- ================= SIGNATURES ================= -->
+<section id="signatures">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Savour &amp; Texture</span>
+      <h2>Signature <em>compositions.</em></h2>
+      <p>Five cakes we return to again and again. Each one is a study in balance — sponge, cream, and fruit built to be tasted together.</p>
+    </div>
+
+    <!-- KINDER BUENO -->
+    <article class="comp">
+      <div class="comp-media reveal-img">
+        <img src="images/bueno.jpg" alt="Kinder Bueno cake cross-section with chocolate sponge, hazelnut caramel and chocolate mousse">
+        <div class="price-tag"><b>$110</b><small> per 6 person</small></div>
+      </div>
+      <div class="comp-copy reveal" style="--d:150ms">
+        <span class="num">01</span>
+        <h3>Kinder Bueno</h3>
+        <div class="layer">Chocolate sponge · White &amp; milk chocolate mousse · Berry insertion</div>
+        <p class="desc">Chocolate sponge layered with white chocolate mousse, milk chocolate mousse, and a fresh wild-berry insertion — three layers, three textures, one harmony.</p>
+        <p class="line">Three layers, three textures, one quiet harmony.</p>
+        <a href="#how-to-order" class="comp-link"><i></i>Order this cake</a>
+      </div>
+    </article>
+
+    <!-- FRESH VANILLA -->
+    <article class="comp flip">
+      <div class="comp-media reveal-img">
+        <img src="images/french-vanilla.jpg" alt="Fresh Vanilla cake cross-section with vanilla sponge, vanilla cream and blueberry insertion">
+        <div class="price-tag"><b>$120</b><small> per 6 person</small></div>
+      </div>
+      <div class="comp-copy reveal" style="--d:150ms">
+        <span class="num">02</span>
+        <h3>Fresh Vanilla</h3>
+        <div class="layer">Vanilla sponge · Vanilla cream · Fresh berry insertion</div>
+        <p class="desc">True vanilla sponge with a silky vanilla cream and a crown of fresh berries — refined simplicity, where authentic vanilla meets the brightness of fruit.</p>
+        <p class="line">Refined simplicity — vanilla, done honestly.</p>
+        <a href="#how-to-order" class="comp-link"><i></i>Order this cake</a>
+      </div>
+    </article>
+
+    <!-- FRESH PISTACHIO -->
+    <article class="comp">
+      <div class="comp-media reveal-img">
+        <img src="images/pistachio-raspberry.jpg" alt="Fresh Pistachio cake cross-section with pistachio mousse and raspberry insertion">
+        <div class="price-tag"><b>$160</b><small> per 6 person</small></div>
+      </div>
+      <div class="comp-copy reveal" style="--d:150ms">
+        <span class="num">03</span>
+        <h3>Fresh Pistachio</h3>
+        <div class="layer">Vanilla sponge · Pistachio mousse · Fresh berry insertion</div>
+        <p class="desc">The delicate aroma of Sicilian pistachio in a light mousse, lifted by the gentle acidity of fresh berries over a soft vanilla sponge.</p>
+        <p class="line">Sicilian pistachio, softened by fresh berries.</p>
+        <a href="#how-to-order" class="comp-link"><i></i>Order this cake</a>
+      </div>
+    </article>
+
+    <!-- BLACK FOREST -->
+    <article class="comp flip">
+      <div class="comp-media reveal-img">
+        <img src="images/black-forest.jpg" alt="Black Forest cake cross-section with chocolate sponge, chocolate mousse and cherries">
+        <div class="price-tag"><b>$140</b><small> per 6 person</small></div>
+      </div>
+      <div class="comp-copy reveal" style="--d:150ms">
+        <span class="num">04</span>
+        <h3>Black Forest</h3>
+        <div class="layer">Chocolate sponge · Chocolate mousse · Wild berries</div>
+        <p class="desc">A classic, reinterpreted — deep cocoa intensity balanced by the acidity of sour cherry. For those who love chocolate at its most confident.</p>
+        <p class="line">A classic, reinterpreted with confidence.</p>
+        <a href="#how-to-order" class="comp-link"><i></i>Order this cake</a>
+      </div>
+    </article>
+
+    <!-- HONEY CAKE -->
+    <article class="comp">
+      <div class="comp-media reveal-img">
+        <img src="images/honey-cake.jpg" alt="Honey Cake cross-section with thin caramelized honey layers and sour cream frosting">
+        <div class="price-tag"><b>$150</b><small> per 6 person</small></div>
+      </div>
+      <div class="comp-copy reveal" style="--d:150ms">
+        <span class="num">05</span>
+        <h3>Honey Cake</h3>
+        <div class="layer">Honey layers · Sour cream frosting · Nuts &amp; fruits</div>
+        <p class="desc">A timeless Eastern European classic, reimagined — delicate honey layers balanced by silky sour cream frosting and a deep caramelized honey finish.</p>
+        <p class="line">Classic comfort, layered with confidence.</p>
+        <a href="#how-to-order" class="comp-link"><i></i>Order this cake</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">What We Make</span>
+      <h2>Cakes for every <em>occasion.</em></h2>
+      <p>From a single celebration cake to a full dessert table, every order is designed with you and confirmed personally over Instagram.</p>
+    </div>
+    <div class="services">
+
+      <article class="service reveal">
+        <div class="service-media">
+          <img src="images/ruffle-showpiece.jpg" alt="Ivory ruffled wedding cake showpiece" loading="lazy">
+          <span class="tag">Quote on request</span>
+        </div>
+        <div class="service-body">
+          <span class="num">01</span>
+          <h3>Wedding Cakes</h3>
+          <p>Tiered wedding cakes designed around your venue, palette and menu. We start with a tasting and a conversation, then build the cake to fit the day.</p>
+          <ul>
+            <li>Two to five tiers, any of our signature flavours</li>
+            <li>Fresh florals, sugar work and textured finishes</li>
+            <li>Delivery and on-site setup across the GTA</li>
+          </ul>
+          <div class="service-foot">
+            <div class="from"><small>Pricing</small>On request</div>
+            <a href="https://www.instagram.com/_yummy_cakee_/" target="_blank" rel="noopener" class="link"><i></i>Request a quote</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="service reveal" style="--d:120ms">
+        <div class="service-media">
+          <img src="images/two-tier.jpg" alt="Two-tier pink birthday cake with dried florals and a gold topper" loading="lazy">
+          <span class="tag">Made for you</span>
+        </div>
+        <div class="service-body">
+          <span class="num">02</span>
+          <h3>Personalized Cakes</h3>
+          <p>Birthdays, anniversaries, baby showers and gender reveals. Choose a flavour, share your idea, and we design a cake that tells the story of the day.</p>
+          <ul>
+            <li>Custom colours, lettering and toppers</li>
+            <li>Bento cakes to two-tier celebration cakes</li>
+            <li>Photo, name or number toppers on request</li>
+          </ul>
+          <div class="service-foot">
+            <div class="from"><small>Pricing</small>From $160</div>
+            <a href="https://www.instagram.com/_yummy_cakee_/" target="_blank" rel="noopener" class="link"><i></i>Order yours</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="service reveal" style="--d:240ms">
+        <div class="service-media">
+          <img src="images/matcha-domes.jpg" alt="Geometric matcha mousse domes on a gold rack" loading="lazy">
+          <span class="tag">Dessert tables</span>
+        </div>
+        <div class="service-body">
+          <span class="num">03</span>
+          <h3>Candy Bars</h3>
+          <p>A curated dessert table for weddings, corporate events and parties. Mini cakes, mousse domes, meringues and pastries, styled to match your event.</p>
+          <ul>
+            <li>Mix of mini desserts, cake pops and pastries</li>
+            <li>Styled to your colours and theme</li>
+            <li>Sized per guest count, delivered and set up</li>
+          </ul>
+          <div class="service-foot">
+            <div class="from"><small>Pricing</small>$12-$18 (3 pcs per person)</div>
+            <a href="https://www.instagram.com/_yummy_cakee_/" target="_blank" rel="noopener" class="link"><i></i>Plan a table</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+    <p class="services-note reveal">All prices in CAD. Final pricing depends on size, flavour and decor — message us on Instagram for an exact quote.</p>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Recent Bakes</span>
+      <h2>From the <em>kitchen.</em></h2>
+      <p>Bento cakes, tiered celebrations, and sculptural showpieces — a look at what has left the kitchen lately.</p>
+    </div>
+    <div class="gallery" id="gallery-grid">
+      <figure class="g-item g-big reveal"><img src="images/two-tier.jpg" alt="Two-tier pink celebration cake with dried florals" loading="lazy"><figcaption class="cap">Two-tier celebration</figcaption></figure>
+      <figure class="g-item reveal" style="--d:60ms"><img src="images/bento-birthday.jpg" alt="Green bento cake with Happy Birthday Baby lettering" loading="lazy"><figcaption class="cap">Bento birthday cake</figcaption></figure>
+      <figure class="g-item g-tall reveal" style="--d:120ms"><img src="images/ruffle-showpiece.jpg" alt="Ivory ruffled sculptural showpiece" loading="lazy"><figcaption class="cap">Sculptural showpiece</figcaption></figure>
+      <figure class="g-item reveal" style="--d:180ms"><img src="images/matcha-domes.jpg" alt="Geometric matcha mousse domes on a gold rack" loading="lazy"><figcaption class="cap">Matcha mousse domes</figcaption></figure>
+      <figure class="g-item g-wide reveal" style="--d:60ms"><img src="images/vanilla-sheet.jpg" alt="Rectangular vanilla cake with piped cream and vanilla pods" loading="lazy"><figcaption class="cap">Vanilla sheet cake</figcaption></figure>
+      <figure class="g-item g-tall reveal" style="--d:120ms"><img src="images/meringue-roll.jpg" alt="Meringue roll with citrus and mint in a gift box" loading="lazy"><figcaption class="cap">Citrus meringue roll</figcaption></figure>
+      <figure class="g-item reveal" style="--d:180ms"><img src="images/fraisier.jpg" alt="Strawberry pistachio fraisier cake" loading="lazy"><figcaption class="cap">Strawberry pistachio fraisier</figcaption></figure>
+      <figure class="g-item g-wide reveal" style="--d:60ms"><img src="images/jellyfish.jpg" alt="Sculpted jellyfish dessert showpiece" loading="lazy"><figcaption class="cap">Jellyfish showpiece</figcaption></figure>
+      <figure class="g-item reveal" style="--d:120ms"><img src="images/sphere-box.jpg" alt="Chocolate sphere cake with Happy Birthday lettering in a box" loading="lazy"><figcaption class="cap">Sphere surprise cake</figcaption></figure>
+      <figure class="g-item reveal" style="--d:180ms"><img src="images/charlotte.jpg" alt="Tiramisu charlotte tied with a pink ribbon" loading="lazy"><figcaption class="cap">Tiramisu charlotte</figcaption></figure>
+      <figure class="g-item reveal" style="--d:240ms"><img src="images/lemons.jpg" alt="Lemon dessert showpiece with sugar splash" loading="lazy"><figcaption class="cap">Lemon showpiece</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-btn lb-close" id="lb-close" aria-label="Close">×</button>
+  <button class="lb-btn lb-prev" id="lb-prev" aria-label="Previous">‹</button>
+  <figure><img id="lb-img" src="" alt=""><figcaption id="lb-cap"></figcaption></figure>
+  <button class="lb-btn lb-next" id="lb-next" aria-label="Next">›</button>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="container about-grid">
+    <div class="about-media reveal-img">
+      <div class="frame"><img src="images/charlotte.jpg" alt="Tiramisu charlotte with a pink satin bow"></div>
+      <div class="frame-2"><img src="images/matcha-domes.jpg" alt="Matcha mousse domes"></div>
+    </div>
+    <div class="about-copy reveal" style="--d:200ms">
+      <span class="eyebrow">The Baker</span>
+      <h2>Made by hand, <em>one cake at a time.</em></h2>
+      <p>Yummy Cakee is the home bakery of Olena Godyna, based in Ontario, Canada. Every cake is baked to order — no freezer stock, no shortcuts — so what arrives at your table was made for that day and that occasion.</p>
+      <p>The compositions are built around real ingredients: true vanilla, Sicilian pistachio, deep cocoa, and fresh berries in season. Decor is kept honest and elegant, from minimal bento cakes to tiered showpieces.</p>
+      <div class="about-values">
+        <div><h4>Baked to order</h4><p>Confirmed personally, scheduled for your date.</p></div>
+        <div><h4>Real ingredients</h4><p>Fresh fruit, quality chocolate, no premixes.</p></div>
+        <div><h4>Custom design</h4><p>Toppers, colours and tiers to match your celebration.</p></div>
+      </div>
+      <div class="signature">— Olena</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section id="reviews">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Kind Words</span>
+      <h2>What our <em>customers say.</em></h2>
+      <p>Reviews from cake lovers across Ontario.</p>
+    </div>
+    <div class="review-grid">
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>The pistachio-raspberry cake was the highlight of our baby shower. Absolutely stunning and delicious — everyone asked where it was from!</blockquote>
+        <cite>Sarah M. · Toronto</cite>
+      </div>
+      <div class="review-card reveal" style="--d:100ms">
+        <div class="stars">★★★★★</div>
+        <blockquote>Ordered a Black Forest for my mom's birthday. Moist, rich, beautifully decorated, and delivered on time. Will order again!</blockquote>
+        <cite>Daniel K. · Mississauga</cite>
+      </div>
+      <div class="review-card reveal" style="--d:200ms">
+        <div class="stars">★★★★★</div>
+        <blockquote>The honey cake tastes just like my grandmother's — perfectly layered and not too sweet. Wonderful service over Instagram DM.</blockquote>
+        <cite>Olena S. · Vaughan</cite>
+      </div>
+      <div class="review-card reveal" style="--d:300ms">
+        <div class="stars">★★★★★</div>
+        <blockquote>I asked for a custom Bueno cake with a photo topper and it exceeded every expectation. Best cake shop in the GTA, hands down.</blockquote>
+        <cite>Jessica T. · Brampton</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW TO ORDER ================= -->
+<section id="how-to-order">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Ordering</span>
+      <h2>Three simple <em>steps.</em></h2>
+      <p>All orders go through Instagram DM so every detail is confirmed personally.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="n">01</div>
+        <h3>Send a message</h3>
+        <p>DM us on Instagram with your flavour, size, celebration date, and any custom design ideas or photo inspiration.</p>
+      </div>
+      <div class="step reveal" style="--d:120ms">
+        <div class="n">02</div>
+        <h3>Confirm the details</h3>
+        <p>We reply with an exact price and availability. A small deposit reserves your date in the baking calendar.</p>
+      </div>
+      <div class="step reveal" style="--d:240ms">
+        <div class="n">03</div>
+        <h3>Pickup or delivery</h3>
+        <p>Collect your cake fresh on the day, or arrange local delivery across the GTA. Then, the best part — enjoy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section id="cta">
+  <div class="container cta-inner">
+    <h2 class="reveal">Pick your <em>composition.</em></h2>
+    <p class="reveal" style="--d:120ms">Message me with the flavour you love and your celebration date — everything is confirmed personally, one cake at a time.</p>
+    <a href="https://www.instagram.com/_yummy_cakee_/" target="_blank" rel="noopener" class="btn btn-gold reveal" style="--d:240ms">Order on Instagram</a>
+    <a href="https://www.instagram.com/_yummy_cakee_/" target="_blank" rel="noopener" class="handle reveal" style="--d:360ms">@_yummy_cakee_</a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="foot-row">
+      <div class="foot-brand">Yummy Cakee<small>by Olena Godyna</small></div>
+      <nav class="foot-links">
+        <a href="#signatures">Signatures</a>
+        <a href="#services">Occasions</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#how-to-order">Order</a>
+      </nav>
+      <p>Baked to order in Ontario, Canada · Pickup &amp; local delivery</p>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Yummy Cakee · Olena Godyna Home Bakery</span>
+      <span>All prices in CAD and subject to customization.</span>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="to-top" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Scroll reveal */
+  var els = document.querySelectorAll('.reveal, .reveal-img, .hero-media .shot');
+  if (!('IntersectionObserver' in window) || reduce) {
+    els.forEach(function(e){ e.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  }
+
+  /* Header shadow + back-to-top */
+  var header = document.getElementById('site-header');
+  var toTop = document.getElementById('to-top');
+  function onScroll(){
+    var y = window.scrollY || window.pageYOffset;
+    header.classList.toggle('scrolled', y > 20);
+    toTop.classList.toggle('show', y > 700);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  toTop.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
+
+  /* Mobile nav */
+  var burger = document.getElementById('burger');
+  var mnav = document.getElementById('mobile-nav');
+  burger.addEventListener('click', function(){
+    var open = mnav.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+  });
+  mnav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ mnav.classList.remove('open'); burger.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); });
+  });
+
+  /* Hero subtle parallax on pointer move */
+  var media = document.getElementById('hero-media');
+  if (media && !reduce && window.matchMedia('(hover: hover)').matches) {
+    var layers = media.querySelectorAll('[data-depth]');
+    var hero = document.getElementById('hero');
+    var tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
+    hero.addEventListener('mousemove', function(e){
+      var r = hero.getBoundingClientRect();
+      tx = ((e.clientX - r.left) / r.width - .5);
+      ty = ((e.clientY - r.top) / r.height - .5);
+      if (!raf) raf = requestAnimationFrame(tick);
+    });
+    hero.addEventListener('mouseleave', function(){ tx = 0; ty = 0; if (!raf) raf = requestAnimationFrame(tick); });
+    function tick(){
+      cx += (tx - cx) * .08; cy += (ty - cy) * .08;
+      layers.forEach(function(l){
+        var d = parseFloat(l.getAttribute('data-depth'));
+        l.style.transform = 'translate3d(' + (-cx * d) + 'px,' + (-cy * d) + 'px,0)';
+      });
+      if (Math.abs(tx - cx) > .001 || Math.abs(ty - cy) > .001) raf = requestAnimationFrame(tick); else raf = null;
+    }
+  }
+
+  /* Lightbox */
+  var items = Array.prototype.slice.call(document.querySelectorAll('#gallery-grid .g-item'));
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lb-img');
+  var lbCap = document.getElementById('lb-cap');
+  var current = 0;
+  function show(i){
+    current = (i + items.length) % items.length;
+    var img = items[current].querySelector('img');
+    lbImg.src = img.src; lbImg.alt = img.alt;
+    lbCap.textContent = items[current].querySelector('.cap').textContent;
+  }
+  function open(i){ show(i); lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function close(){ lb.classList.remove('open'); document.body.style.overflow = ''; }
+  items.forEach(function(it, i){ it.addEventListener('click', function(){ open(i); }); });
+  document.getElementById('lb-close').addEventListener('click', close);
+  document.getElementById('lb-prev').addEventListener('click', function(e){ e.stopPropagation(); show(current - 1); });
+  document.getElementById('lb-next').addEventListener('click', function(e){ e.stopPropagation(); show(current + 1); });
+  lb.addEventListener('click', function(e){ if (e.target === lb) close(); });
+  document.addEventListener('keydown', function(e){
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
